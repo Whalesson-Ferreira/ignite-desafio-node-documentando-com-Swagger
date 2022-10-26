@@ -1,5 +1,5 @@
 
-# ignite-desafio-node-introdução-ao-SOLID
+# ignite-desafio-node-documentando-com-Swagger
 
 Projeto desenvolvido durante a trilha de Node do Ignite da Rocketseat. O desenvolvimento se deu a partir de um [template](https://github.com/rocketseat-education/ignite-template-introducao-ao-SOLID), que já vem com os testes configurados e os padrões de código definidos. O objetivo deste desafio foi praticar os conceitos de nodejs, seguindo padrões de código e princípios do SOLID.
 

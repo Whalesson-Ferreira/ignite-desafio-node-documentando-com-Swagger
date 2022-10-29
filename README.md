@@ -1,8 +1,9 @@
 
 # ignite-desafio-node-documentando-com-Swagger
 
-Projeto desenvolvido durante a trilha de Node do Ignite da Rocketseat. O desenvolvimento se deu a partir de um [template](https://github.com/rocketseat-education/ignite-template-introducao-ao-SOLID), que já vem com os testes configurados e os padrões de código definidos. O objetivo deste desafio foi praticar os conceitos de nodejs, seguindo padrões de código e princípios do SOLID.
+Projeto desenvolvido durante a trilha de Node do Ignite da Rocketseat. O objetivo deste desafio foi realizar a documentação das rotas de uma API através do Swagger, utilizando uma aplicação já funcional. 
 
+Para isso, foi utilizada a aplicação desenvolvida no [desafio anterior](https://github.com/Whalesson-Ferreira/ignite-desafio-node-introducao-ao-SOLID), que segue padrões de código e princípios do SOLID, além de partir de um [template](https://github.com/rocketseat-education/ignite-template-introducao-ao-SOLID), que já vem com os testes configurados e os padrões de código definidos.
 
 Essa aplicação realiza a listagem e cadastro de usuários, onde a listagem só pode ser feita caso o usuário seja admin, através das seguintes rotas:
 
@@ -10,8 +11,17 @@ Essa aplicação realiza a listagem e cadastro de usuários, onde a listagem s
 
 - Cadastrar usuário
 - Tornar usuário em admin
-- Buscar usuário pelo id
 - Listar usuários
+- Buscar usuário pelo id
+
+## O que foi documentado
+
+- Informações gerais da API, como nome e descrição
+- Rotas
+- Parâmetros de rotas
+- Corpo da requisição
+- Respostas de sucesso e erro
+- Exemplos de corpo de requisição e retorno de rotas
 
 ## Stack utilizada
 
@@ -24,6 +34,7 @@ Essa aplicação realiza a listagem e cadastro de usuários, onde a listagem s
 - [ts-node-dev](https://github.com/wclr/ts-node-dev#readme) para compilar o código Typecript e reiniciar automaticamente quando os arquivos são modificados
 - [eslint](https://eslint.org/) para identificar padrões de código em desacordo com as regras pré-estabelecidas
 - [prettier](https://prettier.io/) para formatar o código de acordo com essas regras
+- [swagger-ui-express](https://github.com/scottie1984/swagger-ui-express#readme) para documentar a API
 
 ## Instalação
 
@@ -40,9 +51,13 @@ Execute o projeto com yarn dev
   yarn dev
 ```
 
+Acesse a url da documentação no navegador
+
+  - [/api-docs/](http://localhost:3333/api-docs/)
+
 ## Aprendizados
 
-O desenvolvimento deste projeto permitiu a prática de vários conceitos de Node, através da utilização de padrões de código e princípios do SOLID, realçando a importância de desenvolver aplicações que sejam fáceis de manter e evoluir.
+O desenvolvimento deste projeto contribuiu para apresentar uma maneira de documentar a aplicação e reforçar a sua importância, já que uma documentação clara de uma API é essencial para quem irá consumi-la, fazendo com que rotas, parâmetros e respostas sejam conhecidos pelo desenvolvedor.
 
 ## Documentação
 
@@ -53,7 +68,10 @@ O desenvolvimento deste projeto permitiu a prática de vários conceitos de Node
 [ts-node-dev](https://github.com/wclr/ts-node-dev#readme) |
 [eslint](https://eslint.org/) |
 [prettier](https://prettier.io/) |
-[Template da aplicação](https://github.com/rocketseat-education/ignite-template-introducao-ao-SOLID)
+[Template da aplicação](https://github.com/rocketseat-education/ignite-template-introducao-ao-SOLID) |
+[desafio-anterior](https://github.com/Whalesson-Ferreira/ignite-desafio-node-introducao-ao-SOLID) |
+[swagger-ui-express](https://github.com/scottie1984/swagger-ui-express#readme) |
+[swagger-io](https://swagger.io/specification/)
 
 ## Autores
 

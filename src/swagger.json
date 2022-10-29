@@ -2,34 +2,39 @@
   "openapi": "3.0.0",
   "info": {
     "title": "API Documentation",
-    "description": "This is an API for register and listing of users, but only admins can list users",
+    "description": "This is an API for register and listing of users, but only admins can list users.",
     "version": "1.0.0",
     "contact": {
+      "name": "API Support",
       "email": "whalesson345@gmail.com"
     }
   },
+  "tags": [{
+      "name": "User Routes",
+      "description": "Routes to resource"
+    }],
   "paths": {
     "/users": {
       "post": {
-        "tags": ["User"],
+        "tags": ["User Routes"],
         "summary": "Create user",
-        "description": "Create a new non admin user",
+        "description": "Create a new non admin user.",
         "requestBody": {
+          "description": "Required data to create a user.",
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
                   "name": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "user name simple"
                   },
                   "email": {
-                    "type": "string"
+                    "type": "string",
+                    "format": "email"
                   }
-                },
-                "example": {
-                  "name": "user name simple",
-                  "email": "email user simple"
                 }
               }
             }
@@ -37,45 +42,43 @@
         },
         "responses": {
           "201":{
-            "description": "Created",
+            "description": "Created user.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "id": {
-                      "type": "string"
+                      "type": "string",
+                      "format": "uuid"
                     },
                     "name": {
-                      "type": "string"
+                      "type": "string",
+                      "example": "user name simple"
                     },
                     "email": {
-                      "type": "string"
+                      "type": "string",
+                      "format": "email"
                     },
                     "admin": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "default": false
                     },
                     "created_at": {
-                      "type": "string"
+                      "type": "string",
+                      "format": "date-time"
                     },
                     "updated_at": {
-                      "type": "string"
+                      "type": "string",
+                      "format": "date-time"
                     }
-                  },
-                  "example": {
-                    "id": "195486f7-de9b-4685-8de5-22be44773041",
-                    "name": "user name simple",
-                    "email": "email user simple",
-                    "admin": "false",
-                    "created_at": "2022-10-25T20:30:54.655Z",
-                    "updated_at": "2022-10-25T20:30:54.655Z"
                   }
                 }
               }
             }
           },
           "400":{
-            "description": "Bad Request",
+            "description": "User already exists.",
             "content": {
               "application/json": {
                 "schema": {
@@ -95,14 +98,14 @@
         }
       },
       "get": {
-        "tags": ["User"],
+        "tags": ["User Routes"],
         "summary": "List users",
-        "description": "List all created users",
+        "description": "List all created users and only <code>admin</code> can access this route.",
         "parameters": [
           {
             "in": "header",
             "name": "user_id",
-            "description": "",
+            "description": "Id of the user who wants to list the users.",
             "required": true,
             "schema": {
               "type": "string"
@@ -111,7 +114,7 @@
         ],
         "responses": {
           "200":{
-            "description": "Ok",
+            "description": "Success.",
             "content": {
               "application/json": {
                 "schema":{
@@ -120,31 +123,55 @@
                     "type": "object",
                     "properties": {
                       "id":{
-                        "type": "string"
+                        "type": "string",
+                        "format": "uuid"
                       },
                       "name":{
                         "type": "string"
                       },
                       "email":{
-                        "type": "string"
+                        "type": "string",
+                        "format": "email"
                       },
                       "admin": {
                         "type": "boolean"
                       },
                       "created_at": {
-                        "type": "string"
+                        "type": "string",
+                        "format": "date-time"
                       },
                       "updated_at": {
-                        "type": "string"
+                        "type": "string",
+                        "format": "date-time"
                       }
                     }
-                  }
+                    
+                  },
+                  "example": [
+                    {
+                      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                      "name": "user1 name simple",
+                      "email": "user1@email.com",
+                      "admin": true,
+                      "created_at": "2022-10-28T11:21:55.242Z",
+                      "updated_at": "2022-10-28T11:25:55.242Z"
+                    },
+                    {
+                      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa7",
+                      "name": "user2 name simple",
+                      "email": "user2@email.com",
+                      "admin": false,
+                      "created_at": "2022-10-28T11:21:55.242Z",
+                      "updated_at": "2022-10-28T11:21:55.242Z"
+                    }
+                  ]
+                  
                 }
               }
             }
           },
           "400": {
-            "description": "Non admin user or non existing user",
+            "description": "Non admin user or non existing user.",
             "content": {
               "application/json": {
                 "schema": {
@@ -166,14 +193,14 @@
     },
     "/users/{user_id}": {
       "get": {
-        "tags": ["User"],
+        "tags": ["User Routes"],
         "summary": "Search user",
-        "description": "Search a user by id",
+        "description": "Search a user by id.",
         "parameters": [
           {
             "in": "path",
             "name": "user_id",
-            "description": "",
+            "description": "User id to fetch.",
             "required": true,
             "schema": {
               "type": "string"
@@ -182,37 +209,45 @@
         ],
         "responses": {
           "200":{
-            "description": "Ok",
+            "description": "Success.",
             "content": {
               "application/json": {
                 "schema":{
                   "type": "object",
                   "properties": {
                     "id":{
-                      "type": "string"
+                      "type": "string",
+                      "format": "uuid"
                     },
                     "name":{
-                      "type": "string"
+                      "type": "string",
+                      "example": "user name simple"
                     },
                     "email":{
-                      "type": "string"
+                      "type": "string",
+                      "example": "user email simple"
                     },
                     "admin": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "default": false
                     },
                     "created_at": {
-                      "type": "string"
+                      "type": "string",
+                      "format": "date-time"
                     },
                     "updated_at": {
-                      "type": "string"
+                      "type": "string",
+                      "format": "date-time"
                     }
                   }
+                  
+                  
                 }
               }
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "Non existing user.",
             "content": {
               "application/json": {
                 "schema": {
@@ -234,14 +269,14 @@
     },
     "/users/{user_id}/admin": {
       "patch": {
-        "tags": ["User"],
+        "tags": ["User Routes"],
         "summary": "Turn user on admin",
-        "description": "Turn a user on admin",
+        "description": "Turn a user on admin.",
         "parameters": [
           {
             "in": "path",
             "name": "user_id",
-            "description": "",
+            "description": "User id to turn admin.",
             "required": true,
             "schema": {
               "type": "string"
@@ -250,29 +285,35 @@
         ],
         "responses": {
           "200":{
-            "description": "Ok",
+            "description": "Success.",
             "content": {
               "application/json": {
                 "schema":{
                   "type": "object",
                   "properties": {
                     "id":{
-                      "type": "string"
+                      "type": "string",
+                      "format": "uuid"
                     },
                     "name":{
-                      "type": "string"
+                      "type": "string",
+                      "example": "user name simple"
                     },
                     "email":{
-                      "type": "string"
+                      "type": "string",
+                      "example": "user email simple"
                     },
                     "admin": {
-                      "type": "boolean"
+                      "type": "boolean",
+                      "default": true
                     },
                     "created_at": {
-                      "type": "string"
+                      "type": "string",
+                      "format": "date-time"
                     },
                     "updated_at": {
-                      "type": "string"
+                      "type": "string",
+                      "format": "date-time"
                     }
                   }
                 }
@@ -280,7 +321,7 @@
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "Non existing user.",
             "content": {
               "application/json": {
                 "schema": {
